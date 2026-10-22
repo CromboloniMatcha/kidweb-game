@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pinky Math Sprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="bg" id="bg"></div>
+<main class="wrap">
+
+<section id="home" class="view active">
+  <div class="hero">
+    <div class="mascot big">🦄</div>
+    <h1>Pinky Math Sprint</h1>
+    <p class="lead">A fun number game for kids! Pick a level, solve 10 stages, beat the clock and collect shiny stars.</p>
+    <button class="btn" data-go="games">Let’s Play!</button>
+    <div class="feats">
+      <div>🌱🚀👑<span>3 levels</span></div>
+      <div>🎯<span>10 stages each</span></div>
+      <div>⭐<span>Score and stars</span></div>
+    </div>
+    <p class="soon">4 games to play, more coming soon!</p>
+  </div>
+</section>
+
+<section id="games" class="view">
+  <button class="link" data-go="home">← Back</button>
+  <h2>Choose a game</h2>
+  <div class="games">
+    <button class="gcard" data-go="levels">
+      <span class="ic">🔢</span>
+      <span class="txt"><b>Math Sprint</b><small>Solve number puzzles before time runs out</small></span>
+      <span class="tag play">Play!</span>
+    </button>
+    <button class="gcard" disabled aria-disabled="true">
+      <span class="ic">🔤</span>
+      <span class="txt"><b>Word Builder</b><small>Make words from scrambled letters</small></span>
+      <span class="tag">🚧 In progress</span>
+    </button>
+    <button class="gcard" disabled aria-disabled="true">
+      <span class="ic">🃏</span>
+      <span class="txt"><b>Memory Match</b><small>Flip the cards and find the pairs</small></span>
+      <span class="tag">🚧 In progress</span>
+    </button>
+    <button class="gcard" disabled aria-disabled="true">
+      <span class="ic">🧩</span>
+      <span class="txt"><b>Pattern Puzzle</b><small>What comes next? Spot the pattern</small></span>
+      <span class="tag">🚧 In progress</span>
+    </button>
+  </div>
+</section>
+
+<section id="levels" class="view">
+  <button class="link" data-go="games">← Back</button>
+  <h2>Choose your level</h2>
+  <div class="levels" id="levelList"></div>
+</section>
+
+<section id="game" class="view">
+  <div class="top">
+    <button class="link" id="quit">✕ Quit</button>
+    <div class="pill" id="lvName"></div>
+    <div class="pill">⭐ <span id="score">0</span></div>
+  </div>
+  <div class="dots" id="dots"></div>
+  <div class="timer"><div id="bar"></div><span id="sec"></span></div>
+  <div class="qrow"><div class="mascot" id="mascot">🦄</div><div class="bubble" id="say">Ready? Let’s go!</div></div>
+  <div class="qcard"><div class="stg" id="stg"></div><div class="q" id="q"></div></div>
+  <div class="answers" id="ans"></div>
+</section>
+
+<section id="result" class="view">
+  <div class="res">
+    <div class="mascot big" id="resMascot">🦄</div>
+    <h2 id="resTitle"></h2>
+    <div class="stars" id="resStars"></div>
+    <div class="big-score"><span id="resScore">0</span> points</div>
+    <p id="resInfo"></p>
+    <button class="btn" id="again">Play again</button>
+    <button class="btn alt" data-go="levels">Choose level</button>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p style="text-align: center; padding: 20px; font-size: 14px;">
+    &copy; 2026 Christianus Yanuar. All rights reserved.
+  </p>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/questions.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
