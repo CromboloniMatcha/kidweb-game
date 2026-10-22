@@ -6,6 +6,7 @@
 <title>Pinky Math Sprint</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/silly.css">
 </head>
 <body>
 <div class="bg" id="bg"></div>
@@ -35,10 +36,10 @@
       <span class="txt"><b>Math Sprint</b><small>Solve number puzzles before time runs out</small></span>
       <span class="tag play">Play!</span>
     </button>
-    <button class="gcard" disabled aria-disabled="true">
-      <span class="ic">🔤</span>
-      <span class="txt"><b>Word Builder</b><small>Make words from scrambled letters</small></span>
-      <span class="tag">🚧 In progress</span>
+    <button class="gcard" data-silly="levels">
+      <span class="ic">🧪</span>
+      <span class="txt"><b>Silly Sentence Lab</b><small>Build funny English sentences with the right words</small></span>
+      <span class="tag play">Play!</span>
     </button>
     <button class="gcard" disabled aria-disabled="true">
       <span class="ic">🃏</span>
@@ -84,6 +85,48 @@
   </div>
 </section>
 
+<section id="silly-levels" class="view">
+  <button class="link" data-go="games">← Back</button>
+  <h2>Silly Sentence Lab</h2>
+  <p class="sub">Pick the right kind of word and build funny sentences!</p>
+  <div class="levels" id="sillyLevelList"></div>
+</section>
+
+<section id="silly-game" class="view">
+  <div class="top">
+    <button class="link" id="sillyQuit">✕ Quit</button>
+    <div class="pill" id="sillyLvName"></div>
+    <div class="pill">⭐ <span id="sillyScore">0</span></div>
+  </div>
+  <div class="dots" id="sillyDots"></div>
+  <div class="qrow"><div class="mascot" id="sillyMascot">🧪</div><div class="bubble" id="sillySay"></div></div>
+  <div class="qcard">
+    <div class="stg" id="sillyStg"></div>
+    <div class="sentence" id="sillySentence"></div>
+  </div>
+  <div class="typebar" id="sillyType"></div>
+  <div class="answers" id="sillyAns"></div>
+  <div class="sfoot" id="sillyFoot" hidden>
+    <div class="semoji" id="sillyEmoji"></div>
+    <button class="btn alt" id="sillyListen">🔊 Listen</button>
+    <button class="btn" id="sillyNext">Next ➜</button>
+  </div>
+</section>
+
+<section id="silly-result" class="view">
+  <div class="res">
+    <div class="mascot big">🧪</div>
+    <h2 id="sillyResTitle"></h2>
+    <div class="stars" id="sillyResStars"></div>
+    <div class="big-score"><span id="sillyResScore"></span> points</div>
+    <p>Here is your silly story:</p>
+    <ol class="story" id="sillyStory"></ol>
+    <button class="btn alt" id="sillyRead">🔊 Read my story</button>
+    <button class="btn" id="sillyAgain">Play again</button>
+    <button class="btn alt" id="sillyChoose">Choose level</button>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -97,5 +140,7 @@
 <script src="js/storage.js"></script>
 <script src="js/effects.js"></script>
 <script src="js/game.js"></script>
+<script src="js/silly/data.js"></script>
+<script src="js/silly/game.js"></script>
 </body>
 </html>
