@@ -74,3 +74,4 @@ h2{font-size:1.8rem;margin:.4em 0 .6em;color:var(--pinkd)}
 @keyframes up{to{transform:translateY(-60px);opacity:0}}
 button:focus-visible{outline:4px solid var(--sun);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
+footer{position:relative;z-index:1}
