@@ -2,7 +2,8 @@
  * silly/game.js
  * Silly Sentence Lab: screens, game flow and scoring.
  * Uses shared helpers from config.js / storage.js / effects.js / game.js:
- * $, r, pick, show, starText, burst, floatText.
+ * $, pick, show, starText, burst, floatText.
+ * Word matching lives in engine.js; word lists in data.js.
  * Wrapped in a function so its names never clash with Math Sprint.
  */
 (function () {
@@ -15,8 +16,6 @@
   /* ---------- small helpers ---------- */
   const art = l => (/^[aeiou]/i.test(l) ? "an " : "a ") + l;
   const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
-  const shuffle = a => a.sort(() => Math.random() - 0.5);
-  const sample = (arr, n) => shuffle(arr.slice()).slice(0, n);
   const maxFor = lv => lv.stories.reduce((n, s) => n + (s.match(/\{/g) || []).length * PER_BLANK, 0);
 
   function loadBest() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
@@ -71,8 +70,7 @@
     G.stage++;
     if (G.stage > G.lv.stories.length) return finish();
     const story = G.lv.stories[G.stage - 1];
-    G.parts = story.split(/\{([^}]+)\}/);                    // text, type, text, type, ...
-    G.types = G.parts.filter((_, k) => k % 2 === 1);
+    G.st = SillyEngine.parse(story);
     G.marked = /yesterday|last /i.test(story);               // story has a past-time word
     G.filled = []; G.bi = 0; G.wrong = 0; G.stagePts = 0; G.locked = false;
     $("sillyStg").textContent = "Stage " + G.stage + " of " + G.lv.stories.length;
@@ -89,11 +87,11 @@
   }
 
   function drawSentence() {
-    let k = 0;
-    $("sillySentence").innerHTML = G.parts.map((p, i) => {
+    const { parts, slots } = G.st;
+    $("sillySentence").innerHTML = parts.map((p, i) => {
       if (i % 2 === 0) return p;
-      const idx = k++, T = SILLY.TYPES[G.types[idx]], f = G.filled[idx];
-      const first = i === 1 && G.parts[0] === "";
+      const idx = (i - 1) / 2, T = SILLY.TYPES[slots[idx].type], f = G.filled[idx];
+      const first = i === 1 && parts[0] === "";
       if (f) return `<span class="fill" style="--c:${T.color}">${first ? cap(f.w) : f.w}</span>`;
       const cur = idx === G.bi && !G.locked ? " cur" : "";
       return `<span class="blank${cur}" style="--c:${T.color}">${T.label}</span>`;
@@ -101,43 +99,22 @@
   }
 
   function sentenceText() {
-    let k = 0;
-    return cap(G.parts.map((p, i) => (i % 2 === 0 ? p : G.filled[k++].w)).join(""));
-  }
-
-  /* 2 correct words + 2 clearly wrong words (from other word types) */
-  function makeOptions(idx) {
-    const t = G.types[idx];
-    let types = (G.lv.confuse[t] || []).slice();
-    if (t === "past" && G.marked) types = ["verb", "adj", "adv"];            // tense lesson
-    const nt = G.types[idx + 1];
-    if (t === "adj" && (nt === "noun" || nt === "plural")) {                 // avoid "pizza robot"
-      types = types.filter(x => x !== "noun" && x !== "plural");
-    }
-    types = shuffle(types);
-    const good = sample(SILLY.WORDS[t], 2).map(o => ({ ...o, t }));
-    const bad = [];
-    for (let n = 0; n < 2; n++) {
-      const ty = types[n % types.length];
-      let w;
-      do { w = pick(SILLY.WORDS[ty]); } while (bad.some(b => b.w === w.w) || good.some(g => g.w === w.w));
-      bad.push({ ...w, t: ty });
-    }
-    return shuffle(good.concat(bad));
+    return cap(G.st.parts.map((p, i) => (i % 2 === 0 ? p : G.filled[(i - 1) / 2].w)).join(""));
   }
 
   function drawChoices() {
-    const T = SILLY.TYPES[G.types[G.bi]];
-    G.opts = makeOptions(G.bi);
-    $("sillyType").innerHTML = `<span class="chip" style="--c:${T.color}">${T.label}</span><span>${T.hint}</span>`;
+    const slot = G.st.slots[G.bi], T = SILLY.TYPES[slot.type];
+    const clue = slot.tag && SILLY.TAGHINT[slot.tag] ? " (here: " + SILLY.TAGHINT[slot.tag] + ")" : "";
+    G.opts = SillyEngine.makeOptions(G.st, G.filled, G.bi, G.lv, G.marked, SILLY.WORDS);
+    $("sillyType").innerHTML = `<span class="chip" style="--c:${T.color}">${T.label}</span><span>${T.hint}${clue}</span>`;
     $("sillyAns").innerHTML = G.opts.map((o, i) => `<button class="ans word" data-i="${i}">${o.w}</button>`).join("");
     document.querySelectorAll("#sillyAns .ans").forEach(b => b.onclick = () => choose(+b.dataset.i, b));
   }
 
   function choose(i, btn) {
     if (G.locked) return;
-    const o = G.opts[i], t = G.types[G.bi], T = SILLY.TYPES[t];
-    if (o.t !== t) {                                   // wrong type: explain, no penalty beyond fewer points
+    const o = G.opts[i], t = G.st.slots[G.bi].type, T = SILLY.TYPES[t];
+    if (o.t !== t) {                                   // wrong type: explain, fewer points
       G.wrong++; btn.disabled = true; btn.classList.add("wrong");
       sayIt("“" + o.w + "” is " + art(SILLY.TYPES[o.t].label) + ". We need " + art(T.label) + "!", "sad");
       return;
@@ -148,7 +125,7 @@
     btn.classList.add("right"); burst(btn, 8); floatText("+" + pts, btn);
     sayIt("Yes! " + cap(art(T.label)) + " " + T.hint + ".", "hop");
     G.bi++; G.locked = true; drawSentence();
-    if (G.bi < G.types.length) {
+    if (G.bi < G.st.slots.length) {
       setTimeout(() => { G.locked = false; drawSentence(); drawChoices(); }, 700);
     } else {
       setTimeout(done, 700);
@@ -158,14 +135,14 @@
   function done() {
     const full = sentenceText();
     G.made.push(full);
-    G.hist.push(G.stagePts === G.types.length * PER_BLANK ? "ok" : "mid");
+    G.hist.push(G.stagePts === G.st.slots.length * PER_BLANK ? "ok" : "mid");
     drawDots(); drawSentence();
     $("sillyType").hidden = true; $("sillyAns").hidden = true;
     $("sillyEmoji").innerHTML = G.filled.filter(f => f.e)
       .map((f, k) => `<span style="animation-delay:${k * 0.2}s">${f.e}</span>`).join("");
     $("sillyNext").textContent = G.stage >= G.lv.stories.length ? "Finish 🎉" : "Next ➜";
     $("sillyFoot").hidden = false;
-    sayIt(pick(["Ha ha, so silly!", "What a funny sentence!", "Wow, I love that one!"]), "hop");
+    sayIt(pick(["Great sentence!", "That sounds just right!", "Wow, I love that one!"]), "hop");
     burst($("sillySentence"), 14);
     G.locked = true;
   }
