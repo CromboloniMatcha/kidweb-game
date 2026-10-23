@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pinky Math Sprint</title>
+<title>Sapio Lab</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta name="theme-color" content="#ff4fa3">
+<meta name="theme-color" content="#4c6ef5">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/silly.css">
+<link rel="stylesheet" href="css/detective.css">
 </head>
 <body>
 <div class="bg" id="bg"></div>
@@ -16,22 +17,24 @@
 
 <section id="home" class="view active">
   <div class="hero">
-    <div class="mascot big">🦄</div>
-    <h1>Pinky Math Sprint</h1>
-    <p class="lead">A fun number game for kids! Pick a level, solve 10 stages, beat the clock and collect shiny stars.</p>
+    <div class="mascot big">🦉</div>
+    <h1>Sapio Lab</h1>
+    <p class="lead">Fun brain games for kids, teens and students. Pick a game, choose your level and collect stars!</p>
     <button class="btn" data-go="games">Let’s Play!</button>
     <div class="feats">
       <div>🌱🚀👑<span>3 levels</span></div>
       <div>🎯<span>10 stages each</span></div>
       <div>⭐<span>Score and stars</span></div>
     </div>
-    <p class="soon">4 games to play, more coming soon!</p>
+    <p class="soon">Games for kids, plus a Hard section for older students!</p>
   </div>
 </section>
 
 <section id="games" class="view">
   <button class="link" data-go="home">← Back</button>
   <h2>Choose a game</h2>
+
+  <h3 class="group">🧒 Kids <small>Fun practice for school-age kids</small></h3>
   <div class="games">
     <button class="gcard" data-go="levels">
       <span class="ic">🔢</span>
@@ -44,13 +47,37 @@
       <span class="tag play">Play!</span>
     </button>
     <button class="gcard" disabled aria-disabled="true">
-      <span class="ic">🃏</span>
-      <span class="txt"><b>Memory Match</b><small>Flip the cards and find the pairs</small></span>
+      <span class="ic">🧩</span>
+      <span class="txt"><b>Pattern Puzzle</b><small>What comes next? Spot the pattern</small></span>
       <span class="tag">🚧 In progress</span>
     </button>
     <button class="gcard" disabled aria-disabled="true">
-      <span class="ic">🧩</span>
-      <span class="txt"><b>Pattern Puzzle</b><small>What comes next? Spot the pattern</small></span>
+      <span class="ic">🧊</span>
+      <span class="txt"><b>Shape Shifter</b><small>Rotate and fold shapes in your mind</small></span>
+      <span class="tag">🚧 In progress</span>
+    </button>
+  </div>
+
+  <h3 class="group">🎓 Hard <small>For high school and university students</small></h3>
+  <div class="games">
+    <button class="gcard" data-det="levels">
+      <span class="ic">🔎</span>
+      <span class="txt"><b>Argument Detective</b><small>Spot weak arguments and tricky claims</small></span>
+      <span class="tag play">Play!</span>
+    </button>
+    <button class="gcard" disabled aria-disabled="true">
+      <span class="ic">🔀</span>
+      <span class="txt"><b>Mix Master</b><small>Mixed math problems with smart review</small></span>
+      <span class="tag">🚧 In progress</span>
+    </button>
+    <button class="gcard" disabled aria-disabled="true">
+      <span class="ic">🧠</span>
+      <span class="txt"><b>Bias Buster</b><small>Beat the thinking traps in real decisions</small></span>
+      <span class="tag">🚧 In progress</span>
+    </button>
+    <button class="gcard" disabled aria-disabled="true">
+      <span class="ic">🎲</span>
+      <span class="txt"><b>Odds Lab</b><small>Solve risk and probability puzzles</small></span>
       <span class="tag">🚧 In progress</span>
     </button>
   </div>
@@ -70,14 +97,14 @@
   </div>
   <div class="dots" id="dots"></div>
   <div class="timer"><div id="bar"></div><span id="sec"></span></div>
-  <div class="qrow"><div class="mascot" id="mascot">🦄</div><div class="bubble" id="say">Ready? Let’s go!</div></div>
+  <div class="qrow"><div class="mascot" id="mascot">🦉</div><div class="bubble" id="say">Ready? Let’s go!</div></div>
   <div class="qcard"><div class="stg" id="stg"></div><div class="q" id="q"></div></div>
   <div class="answers" id="ans"></div>
 </section>
 
 <section id="result" class="view">
   <div class="res">
-    <div class="mascot big" id="resMascot">🦄</div>
+    <div class="mascot big" id="resMascot">🦉</div>
     <h2 id="resTitle"></h2>
     <div class="stars" id="resStars"></div>
     <div class="big-score"><span id="resScore">0</span> points</div>
@@ -129,6 +156,46 @@
   </div>
 </section>
 
+<section id="detective-levels" class="view">
+  <button class="link" data-go="games">← Back</button>
+  <h2>Argument Detective</h2>
+  <p class="sub">Read each case, find the weak statement, and name the trick.</p>
+  <div class="levels" id="detLevelList"></div>
+</section>
+
+<section id="detective-game" class="view">
+  <div class="top">
+    <button class="link" id="detQuit">✕ Quit</button>
+    <div class="pill" id="detLvName"></div>
+    <div class="pill">⭐ <span id="detScore">0</span></div>
+  </div>
+  <div class="dots" id="detDots"></div>
+  <div class="qrow"><div class="mascot" id="detMascot">🕵️</div><div class="bubble" id="detSay"></div></div>
+  <div class="qcard">
+    <div class="stg" id="detCase"></div>
+    <div class="stmts" id="detStmts"></div>
+  </div>
+  <div class="step" id="detStep"></div>
+  <div class="answers one" id="detAns" hidden></div>
+  <div class="verdict" id="detVerdict" hidden></div>
+  <div class="sfoot" id="detFoot" hidden>
+    <button class="btn" id="detNext">Next case ➜</button>
+  </div>
+</section>
+
+<section id="detective-result" class="view">
+  <div class="res">
+    <div class="mascot big">🕵️</div>
+    <h2 id="detResTitle"></h2>
+    <div class="stars" id="detResStars"></div>
+    <div class="big-score"><span id="detResScore"></span> points</div>
+    <p>Your casebook:</p>
+    <ol class="story" id="detBook"></ol>
+    <button class="btn" id="detAgain">Play again</button>
+    <button class="btn alt" id="detChoose">Choose level</button>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -144,5 +211,7 @@
 <script src="js/silly/data.js"></script>
 <script src="js/silly/engine.js"></script>
 <script src="js/silly/game.js"></script>
+<script src="js/detective/data.js"></script>
+<script src="js/detective/game.js"></script>
 </body>
 </html>
