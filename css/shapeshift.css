@@ -1,0 +1,29 @@
+/* Shape Shifter - extra styles (loads after the other game stylesheets) */
+
+/* level cards */
+.xcard{font:inherit;text-align:left;display:flex;gap:14px;align-items:center;background:var(--card);border:3px solid var(--brand-l);border-radius:26px;padding:14px 16px;cursor:pointer;color:var(--ink);box-shadow:0 6px 0 var(--brand-l);transition:transform .12s}
+.xcard:hover{transform:translateY(-3px) rotate(-.6deg);border-color:var(--brand)}
+.xcard .ic{font-size:2.6rem}.xcard b{font-size:1.35rem;display:block}
+.xcard small{display:block;font-size:.95rem;opacity:.85}.xcard .best{display:block;font-weight:700;color:var(--head);margin-top:4px}
+
+/* puzzle area */
+.shape{display:block;max-width:100%;height:auto}
+.ssprompt{font-weight:700;margin:6px 0 12px}
+.sstarget{display:flex;justify-content:center;padding:6px 0 16px;margin-bottom:14px;border-bottom:3px dashed var(--brand-l)}
+.sstarget .shape{max-height:150px;width:auto}
+.ssopts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ssopt{font:inherit;display:flex;align-items:center;justify-content:center;min-height:124px;padding:10px;background:var(--card);border:3px solid var(--brand);border-radius:20px;box-shadow:0 5px 0 var(--brand-l);cursor:pointer;transition:transform .1s}
+.ssopt .shape{max-height:110px;width:auto}
+.ssopt:hover:not(:disabled){transform:translateY(-3px)}
+.ssopt:disabled{cursor:default}
+.ssopt.right{background:var(--ok-bg);border-color:var(--mint);animation:hop .6s ease}
+.ssopt.wrong{background:var(--flag-bg);border-color:var(--red);opacity:.7;animation:shake .5s ease}
+
+/* fit the hole */
+.ssfitrow{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.ssbox{flex:1 1 140px;max-width:220px;min-height:176px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--soft);border:3px dashed var(--brand-l);border-radius:20px;padding:10px}
+.ssbox .shape{max-height:120px;width:auto}
+.ssbox.solved{border-style:solid;border-color:var(--mint);animation:pop .4s ease}
+.sslabel{font-weight:700;color:var(--head);font-size:.95rem;margin-bottom:8px}
+.sscontrols{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+.sscontrols .btn{padding:10px 22px;font-size:1.1rem}

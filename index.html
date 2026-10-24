@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/silly.css">
 <link rel="stylesheet" href="css/detective.css">
+<link rel="stylesheet" href="css/pattern.css">
+<link rel="stylesheet" href="css/shapeshift.css">
 </head>
 <body>
 <div class="bg" id="bg"></div>
@@ -46,15 +48,15 @@
       <span class="txt"><b>Silly Sentence Lab</b><small>Build funny English sentences with the right words</small></span>
       <span class="tag play">Play!</span>
     </button>
-    <button class="gcard" disabled aria-disabled="true">
+    <button class="gcard" data-pat="levels">
       <span class="ic">🧩</span>
-      <span class="txt"><b>Pattern Puzzle</b><small>What comes next? Spot the pattern</small></span>
-      <span class="tag">🚧 In progress</span>
+      <span class="txt"><b>Pattern Puzzle</b><small>Complete the train: spot the pattern</small></span>
+      <span class="tag play">Play!</span>
     </button>
-    <button class="gcard" disabled aria-disabled="true">
+    <button class="gcard" data-ss="levels">
       <span class="ic">🧊</span>
-      <span class="txt"><b>Shape Shifter</b><small>Rotate and fold shapes in your mind</small></span>
-      <span class="tag">🚧 In progress</span>
+      <span class="txt"><b>Shape Shifter</b><small>Turn and flip shapes in your mind</small></span>
+      <span class="tag play">Play!</span>
     </button>
   </div>
 
@@ -196,6 +198,98 @@
   </div>
 </section>
 
+<section id="pattern-levels" class="view">
+  <button class="link" data-go="games">← Back</button>
+  <h2>Pattern Puzzle</h2>
+  <p class="sub">Complete the train by finding the pattern!</p>
+  <div class="levels" id="patLevelList"></div>
+</section>
+
+<section id="pattern-game" class="view">
+  <div class="top">
+    <button class="link" id="patQuit">✕ Quit</button>
+    <div class="pill" id="patLvName"></div>
+    <div class="pill">⭐ <span id="patScore">0</span></div>
+  </div>
+  <div class="dots" id="patDots"></div>
+  <div class="qrow"><div class="mascot" id="patMascot">🤖</div><div class="bubble" id="patSay"></div></div>
+  <div class="qcard">
+    <div class="stg" id="patStage"></div>
+    <div class="trainbox" id="patTrain"></div>
+  </div>
+  <div class="step" id="patStep"></div>
+  <div class="palette" id="patPal"></div>
+  <div class="verdict" id="patRule" hidden></div>
+  <div class="sfoot" id="patFoot" hidden>
+    <button class="btn" id="patNext">Next train ➜</button>
+  </div>
+</section>
+
+<section id="pattern-result" class="view">
+  <div class="res">
+    <div class="mascot big">🤖</div>
+    <h2 id="patResTitle"></h2>
+    <div class="stars" id="patResStars"></div>
+    <div class="big-score"><span id="patResScore"></span> points</div>
+    <p>Patterns you found:</p>
+    <ol class="story" id="patList"></ol>
+    <button class="btn" id="patAgain">Play again</button>
+    <button class="btn alt" id="patChoose">Choose level</button>
+  </div>
+</section>
+
+<section id="shape-levels" class="view">
+  <button class="link" data-go="games">← Back</button>
+  <h2>Shape Shifter</h2>
+  <p class="sub">Turn, flip and fit shapes in your mind!</p>
+  <div class="levels" id="ssLevelList"></div>
+</section>
+
+<section id="shape-game" class="view">
+  <div class="top">
+    <button class="link" id="ssQuit">✕ Quit</button>
+    <div class="pill" id="ssLvName"></div>
+    <div class="pill">⭐ <span id="ssScore">0</span></div>
+  </div>
+  <div class="dots" id="ssDots"></div>
+  <div class="qrow"><div class="mascot" id="ssMascot">🦎</div><div class="bubble" id="ssSay"></div></div>
+  <div class="qcard">
+    <div class="stg" id="ssStage"></div>
+    <div class="ssprompt" id="ssPrompt"></div>
+    <div id="ssMatch">
+      <div class="sstarget" id="ssTarget"></div>
+      <div class="ssopts" id="ssOpts"></div>
+    </div>
+    <div id="ssFit" hidden>
+      <div class="ssfitrow">
+        <div class="ssbox"><div class="sslabel">Hole</div><div id="ssHole"></div></div>
+        <div class="ssbox"><div class="sslabel">Your piece</div><div id="ssPiece"></div></div>
+      </div>
+      <div class="sscontrols">
+        <button class="btn alt" id="ssTurn">↻ Turn</button>
+        <button class="btn alt" id="ssFlip">⇋ Flip</button>
+        <button class="btn" id="ssGo">Fit it!</button>
+      </div>
+    </div>
+  </div>
+  <div class="verdict" id="ssDone" hidden></div>
+  <div class="sfoot" id="ssFoot" hidden>
+    <button class="btn" id="ssNext">Next puzzle ➜</button>
+  </div>
+</section>
+
+<section id="shape-result" class="view">
+  <div class="res">
+    <div class="mascot big">🦎</div>
+    <h2 id="ssResTitle"></h2>
+    <div class="stars" id="ssResStars"></div>
+    <div class="big-score"><span id="ssResScore"></span> points</div>
+    <p id="ssResInfo"></p>
+    <button class="btn" id="ssAgain">Play again</button>
+    <button class="btn alt" id="ssChoose">Choose level</button>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -213,5 +307,9 @@
 <script src="js/silly/game.js"></script>
 <script src="js/detective/data.js"></script>
 <script src="js/detective/game.js"></script>
+<script src="js/pattern/engine.js"></script>
+<script src="js/pattern/game.js"></script>
+<script src="js/shapeshift/engine.js"></script>
+<script src="js/shapeshift/game.js"></script>
 </body>
 </html>
