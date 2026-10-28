@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/detective.css">
 <link rel="stylesheet" href="css/pattern.css">
 <link rel="stylesheet" href="css/shapeshift.css">
+<link rel="stylesheet" href="css/mix.css">
 </head>
 <body>
 <div class="bg" id="bg"></div>
@@ -67,10 +68,10 @@
       <span class="txt"><b>Argument Detective</b><small>Spot weak arguments and tricky claims</small></span>
       <span class="tag play">Play!</span>
     </button>
-    <button class="gcard" disabled aria-disabled="true">
+    <button class="gcard" data-mix="levels">
       <span class="ic">🔀</span>
-      <span class="txt"><b>Mix Master</b><small>Mixed math problems with smart review</small></span>
-      <span class="tag">🚧 In progress</span>
+      <span class="txt"><b>Mix Master</b><small>Mixed maths problems with smart review</small></span>
+      <span class="tag play">Play!</span>
     </button>
     <button class="gcard" disabled aria-disabled="true">
       <span class="ic">🧠</span>
@@ -290,6 +291,51 @@
   </div>
 </section>
 
+<section id="mix-levels" class="view">
+  <button class="link" data-go="games">← Back</button>
+  <h2>Mix Master</h2>
+  <p class="sub">Mixed topics, typed answers, and comebacks for what you miss.</p>
+  <div class="levels" id="mxLevelList"></div>
+</section>
+
+<section id="mix-game" class="view">
+  <div class="top">
+    <button class="link" id="mxQuit">✕ Quit</button>
+    <div class="pill" id="mxLvName"></div>
+    <div class="pill">⭐ <span id="mxScore">0</span></div>
+  </div>
+  <div class="dots" id="mxDots"></div>
+  <div class="qrow"><div class="mascot" id="mxMascot">🎛️</div><div class="bubble" id="mxSay"></div></div>
+  <div class="qcard">
+    <div class="stg" id="mxStage"></div>
+    <div class="mxq" id="mxQ"></div>
+    <div class="mxrow">
+      <button class="btn alt" id="mxSign" aria-label="Toggle minus sign">±</button>
+      <input class="mxinput" id="mxInput" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Your answer" placeholder="Your answer">
+      <button class="btn" id="mxCheck">Check</button>
+    </div>
+    <div class="mxmsg" id="mxMsg" aria-live="polite"></div>
+  </div>
+  <div class="verdict" id="mxVerdict" hidden></div>
+  <div class="sfoot" id="mxFoot" hidden>
+    <button class="btn" id="mxNext">Next ➜</button>
+  </div>
+</section>
+
+<section id="mix-result" class="view">
+  <div class="res">
+    <div class="mascot big">🎛️</div>
+    <h2 id="mxResTitle"></h2>
+    <div class="stars" id="mxResStars"></div>
+    <div class="big-score"><span id="mxResScore"></span> points</div>
+    <p id="mxResInfo"></p>
+    <p>Your topic report:</p>
+    <ul class="story" id="mxReport"></ul>
+    <button class="btn" id="mxAgain">Play again</button>
+    <button class="btn alt" id="mxChoose">Choose level</button>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -311,5 +357,7 @@
 <script src="js/pattern/game.js"></script>
 <script src="js/shapeshift/engine.js"></script>
 <script src="js/shapeshift/game.js"></script>
+<script src="js/mix/engine.js"></script>
+<script src="js/mix/game.js"></script>
 </body>
 </html>

@@ -14,7 +14,8 @@ sapio-lab/
 │   ├── silly.css       Extra styles for Silly Sentence Lab
 │   ├── detective.css   Extra styles for Argument Detective
 │   ├── pattern.css     Extra styles for Pattern Puzzle
-│   └── shapeshift.css  Extra styles for Shape Shifter
+│   ├── shapeshift.css  Extra styles for Shape Shifter
+│   └── mix.css         Extra styles for Mix Master
 └── js/
     ├── config.js       Helpers and settings (levels, stages, scoring)
     ├── questions.js    Math Sprint: question and answer generator
@@ -31,9 +32,12 @@ sapio-lab/
     ├── pattern/
     │   ├── engine.js   Pattern Puzzle: pattern generators, levels and answer pieces
     │   └── game.js     Pattern Puzzle: game flow and scoring
-    └── shapeshift/
-        ├── engine.js   Shape Shifter: 2D and 3D shapes, turning, mirror images, puzzle generators
-        └── game.js     Shape Shifter: drawing (SVG made in code), game flow and scoring
+    ├── shapeshift/
+    │   ├── engine.js   Shape Shifter: 2D and 3D shapes, turning, mirror images, puzzle generators
+    │   └── game.js     Shape Shifter: drawing (SVG made in code), game flow and scoring
+    └── mix/
+        ├── engine.js   Mix Master: problem generators (3 levels x 8 topics), answer checking
+        └── game.js     Mix Master: mixed order, typed answers, comeback problems, scoring
 ```
 Scripts are loaded in this order (see the bottom of `index.html`).
 
@@ -45,6 +49,7 @@ Scripts are loaded in this order (see the bottom of `index.html`).
 - New cases for Argument Detective: `js/detective/data.js`
 - Pattern types and levels for Pattern Puzzle: `js/pattern/engine.js` (`LEVELS`)
 - Puzzle types and levels for Shape Shifter: `js/shapeshift/engine.js` (`LEVELS`)
+- Topics and problem types for Mix Master: `js/mix/engine.js` (`L1`, `L2`, `L3`)
 - Colors: the `:root` variables at the top of `css/style.css` (light theme) and the dark-mode block right below it. The site follows the visitor's device setting.
 
 ## Free hosting

@@ -1,0 +1,27 @@
+/* Mix Master - extra styles (loads after the other game stylesheets) */
+
+/* level cards */
+.mcard{font:inherit;text-align:left;display:flex;gap:14px;align-items:center;background:var(--card);border:3px solid var(--brand-l);border-radius:26px;padding:14px 16px;cursor:pointer;color:var(--ink);box-shadow:0 6px 0 var(--brand-l);transition:transform .12s}
+.mcard:hover{transform:translateY(-3px) rotate(-.6deg);border-color:var(--brand)}
+.mcard .ic{font-size:2.6rem}.mcard b{font-size:1.35rem;display:block}
+.mcard small{display:block;font-size:.95rem;opacity:.85}.mcard .best{display:block;font-weight:700;color:var(--head);margin-top:4px}
+
+/* problem */
+.mxq{font-size:clamp(1.25rem,5vw,1.7rem);font-weight:600;line-height:1.7;padding:8px 6px 4px}
+.mxq sup,.mxq sub{font-size:.65em}
+
+/* answer box */
+.mxrow{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin-top:18px}
+.mxinput{font:inherit;font-size:1.5rem;font-weight:700;width:min(220px,100%);padding:10px 14px;text-align:center;color:var(--ink);background:var(--card);border:3px solid var(--brand);border-radius:16px}
+.mxinput:disabled{opacity:.9}
+.mxinput.bad{animation:shake .5s ease;border-color:var(--red)}
+.mxinput.good{border-color:var(--mint);background:var(--ok-bg)}
+.mxrow .btn{padding:10px 22px;font-size:1.1rem}
+.mxmsg{min-height:1.6em;margin-top:10px;text-align:center;font-weight:600}
+.mxmsg.ok{color:var(--ok-ink)}
+.mxmsg.warn{color:var(--head)}
+.mxtopic{display:inline-block;background:var(--brand);color:#fff;border-radius:999px;padding:2px 12px;font-weight:700;font-size:.95rem}
+
+/* matrices */
+.mat{display:inline-grid;grid-template-columns:repeat(var(--c),auto);gap:2px 16px;padding:4px 14px;margin:0 6px;border-left:3px solid var(--ink);border-right:3px solid var(--ink);border-radius:8px;vertical-align:middle;font-variant-numeric:tabular-nums}
+.mat i{font-style:normal;text-align:center;min-width:1.4em}
