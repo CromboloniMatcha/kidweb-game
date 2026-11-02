@@ -1,0 +1,16 @@
+/* Bias Buster - extra styles (loads after the other game stylesheets) */
+
+/* level cards */
+.bcard{font:inherit;text-align:left;display:flex;gap:14px;align-items:center;background:var(--card);border:3px solid var(--brand-l);border-radius:26px;padding:14px 16px;cursor:pointer;color:var(--ink);box-shadow:0 6px 0 var(--brand-l);transition:transform .12s}
+.bcard:hover{transform:translateY(-3px) rotate(-.6deg);border-color:var(--brand)}
+.bcard .ic{font-size:2.6rem}.bcard b{font-size:1.35rem;display:block}
+.bcard small{display:block;font-size:.95rem;opacity:.85}.bcard .best{display:block;font-weight:700;color:var(--head);margin-top:4px}
+
+/* the scene and the bias monster */
+.scene{display:flex;gap:14px;align-items:center;text-align:left;margin-top:10px}
+.scenetext{flex:1;font-size:1.1rem;line-height:1.55;background:var(--soft);border:3px solid var(--brand-l);border-radius:18px;padding:12px 14px}
+.monster{flex:none;width:76px;text-align:center;font-size:3.6rem;line-height:1;animation:bob 1.8s ease-in-out infinite}
+.monster.reveal{animation:pop .5s ease, bob 1.8s ease-in-out .5s infinite}
+.monster.busted{animation:bust .7s ease forwards}
+@keyframes bust{30%{transform:scale(1.35) rotate(-10deg)}100%{transform:scale(.1) rotate(200deg);opacity:0}}
+@media (max-width:420px){.scene{flex-direction:column}}

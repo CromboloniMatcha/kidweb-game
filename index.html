@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="css/pattern.css">
 <link rel="stylesheet" href="css/shapeshift.css">
 <link rel="stylesheet" href="css/mix.css">
+<link rel="stylesheet" href="css/bias.css">
+<link rel="stylesheet" href="css/odds.css">
 </head>
 <body>
 <div class="bg" id="bg"></div>
@@ -73,15 +75,15 @@
       <span class="txt"><b>Mix Master</b><small>Mixed maths problems with smart review</small></span>
       <span class="tag play">Play!</span>
     </button>
-    <button class="gcard" disabled aria-disabled="true">
+    <button class="gcard" data-bias="levels">
       <span class="ic">🧠</span>
       <span class="txt"><b>Bias Buster</b><small>Beat the thinking traps in real decisions</small></span>
-      <span class="tag">🚧 In progress</span>
+      <span class="tag play">Play!</span>
     </button>
-    <button class="gcard" disabled aria-disabled="true">
+    <button class="gcard" data-odds="levels">
       <span class="ic">🎲</span>
       <span class="txt"><b>Odds Lab</b><small>Solve risk and probability puzzles</small></span>
-      <span class="tag">🚧 In progress</span>
+      <span class="tag play">Play!</span>
     </button>
   </div>
 </section>
@@ -336,6 +338,96 @@
   </div>
 </section>
 
+<section id="bias-levels" class="view">
+  <button class="link" data-go="games">← Back</button>
+  <h2>Bias Buster</h2>
+  <p class="sub">Name the thinking trap, then bust it with a better strategy.</p>
+  <div class="levels" id="bbLevelList"></div>
+</section>
+
+<section id="bias-game" class="view">
+  <div class="top">
+    <button class="link" id="bbQuit">✕ Quit</button>
+    <div class="pill" id="bbLvName"></div>
+    <div class="pill">⭐ <span id="bbScore">0</span></div>
+  </div>
+  <div class="dots" id="bbDots"></div>
+  <div class="qrow"><div class="mascot" id="bbMascot">🥊</div><div class="bubble" id="bbSay"></div></div>
+  <div class="qcard">
+    <div class="stg" id="bbCase"></div>
+    <div class="scene">
+      <div class="monster" id="bbMonster">❓</div>
+      <div class="scenetext" id="bbText"></div>
+    </div>
+  </div>
+  <div class="step" id="bbStep"></div>
+  <div class="answers one" id="bbAns" hidden></div>
+  <div class="verdict" id="bbVerdict" hidden></div>
+  <div class="sfoot" id="bbFoot" hidden>
+    <button class="btn" id="bbNext">Next case ➜</button>
+  </div>
+</section>
+
+<section id="bias-result" class="view">
+  <div class="res">
+    <div class="mascot big">🥊</div>
+    <h2 id="bbResTitle"></h2>
+    <div class="stars" id="bbResStars"></div>
+    <div class="big-score"><span id="bbResScore"></span> points</div>
+    <p>Your bias book:</p>
+    <ol class="story" id="bbBook"></ol>
+    <button class="btn" id="bbAgain">Play again</button>
+    <button class="btn alt" id="bbChoose">Choose level</button>
+  </div>
+</section>
+
+<section id="odds-levels" class="view">
+  <button class="link" data-go="games">← Back</button>
+  <h2>Odds Lab</h2>
+  <p class="sub">Count people, compare risks and beat the false alarms.</p>
+  <div class="levels" id="odLevelList"></div>
+</section>
+
+<section id="odds-game" class="view">
+  <div class="top">
+    <button class="link" id="odQuit">✕ Quit</button>
+    <div class="pill" id="odLvName"></div>
+    <div class="pill">⭐ <span id="odScore">0</span></div>
+  </div>
+  <div class="dots" id="odDots"></div>
+  <div class="qrow"><div class="mascot" id="odMascot">🔬</div><div class="bubble" id="odSay"></div></div>
+  <div class="qcard">
+    <div class="stg" id="odStage"></div>
+    <div class="odintro" id="odIntro"></div>
+    <div id="odVisual"></div>
+    <div class="odask" id="odAsk"></div>
+    <div class="mxrow">
+      <button class="btn alt" id="odSign" aria-label="Toggle minus sign">±</button>
+      <input class="mxinput" id="odInput" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Your answer" placeholder="Your answer">
+      <button class="btn" id="odCheck">Check</button>
+    </div>
+    <div class="mxmsg" id="odMsg" aria-live="polite"></div>
+  </div>
+  <div class="verdict" id="odLesson" hidden></div>
+  <div class="sfoot" id="odFoot" hidden>
+    <button class="btn" id="odNext">Next step ➜</button>
+  </div>
+</section>
+
+<section id="odds-result" class="view">
+  <div class="res">
+    <div class="mascot big">🔬</div>
+    <h2 id="odResTitle"></h2>
+    <div class="stars" id="odResStars"></div>
+    <div class="big-score"><span id="odResScore"></span> points</div>
+    <p id="odResInfo"></p>
+    <p>What you learned:</p>
+    <ol class="story" id="odLessons"></ol>
+    <button class="btn" id="odAgain">Play again</button>
+    <button class="btn alt" id="odChoose">Choose level</button>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -359,5 +451,9 @@
 <script src="js/shapeshift/game.js"></script>
 <script src="js/mix/engine.js"></script>
 <script src="js/mix/game.js"></script>
+<script src="js/bias/data.js"></script>
+<script src="js/bias/game.js"></script>
+<script src="js/odds/engine.js"></script>
+<script src="js/odds/game.js"></script>
 </body>
 </html>

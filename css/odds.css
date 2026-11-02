@@ -1,0 +1,25 @@
+/* Odds Lab - extra styles (loads after mix.css, which provides the answer box styles) */
+
+/* level cards */
+.ocard{font:inherit;text-align:left;display:flex;gap:14px;align-items:center;background:var(--card);border:3px solid var(--brand-l);border-radius:26px;padding:14px 16px;cursor:pointer;color:var(--ink);box-shadow:0 6px 0 var(--brand-l);transition:transform .12s}
+.ocard:hover{transform:translateY(-3px) rotate(-.6deg);border-color:var(--brand)}
+.ocard .ic{font-size:2.6rem}.ocard b{font-size:1.35rem;display:block}
+.ocard small{display:block;font-size:.95rem;opacity:.85}.ocard .best{display:block;font-weight:700;color:var(--head);margin-top:4px}
+
+/* puzzle text */
+.odintro{text-align:left;font-size:1.05rem;line-height:1.6;background:var(--soft);border:3px solid var(--brand-l);border-radius:18px;padding:12px 14px;margin-top:10px}
+.odask{margin-top:16px;font-size:1.1rem;line-height:1.5;font-weight:600}
+
+/* frequency tree */
+.tree{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.tn{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:62px;padding:6px 4px;text-align:center;font-size:.85rem;line-height:1.25;background:var(--card);border:3px solid var(--brand-l);border-radius:14px}
+.tn b{font-size:1.25rem;font-variant-numeric:tabular-nums}
+.tn.root{grid-column:1 / -1;font-weight:700;font-size:1rem;background:var(--soft)}
+.tn.half{grid-column:span 2}
+.tn.flag{border-color:var(--brand);background:var(--soft)}
+.treefoot{margin-top:10px;font-weight:700;color:var(--head)}
+
+/* lab notebook */
+.notebook{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;text-align:left}
+.notebook li{padding:8px 12px;background:var(--card);border:3px dashed var(--brand-l);border-radius:14px;font-size:1rem}
+.notebook li.done{border-style:solid;border-color:var(--mint);background:var(--ok-bg)}

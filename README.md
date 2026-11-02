@@ -15,7 +15,9 @@ sapio-lab/
 │   ├── detective.css   Extra styles for Argument Detective
 │   ├── pattern.css     Extra styles for Pattern Puzzle
 │   ├── shapeshift.css  Extra styles for Shape Shifter
-│   └── mix.css         Extra styles for Mix Master
+│   ├── mix.css         Extra styles for Mix Master
+│   ├── bias.css        Extra styles for Bias Buster
+│   └── odds.css        Extra styles for Odds Lab
 └── js/
     ├── config.js       Helpers and settings (levels, stages, scoring)
     ├── questions.js    Math Sprint: question and answer generator
@@ -35,9 +37,15 @@ sapio-lab/
     ├── shapeshift/
     │   ├── engine.js   Shape Shifter: 2D and 3D shapes, turning, mirror images, puzzle generators
     │   └── game.js     Shape Shifter: drawing (SVG made in code), game flow and scoring
-    └── mix/
-        ├── engine.js   Mix Master: problem generators (3 levels x 8 topics), answer checking
-        └── game.js     Mix Master: mixed order, typed answers, comeback problems, scoring
+    ├── mix/
+    │   ├── engine.js   Mix Master: problem generators (3 levels x 8 topics), answer checking
+    │   └── game.js     Mix Master: mixed order, typed answers, comeback problems, scoring
+    ├── bias/
+    │   ├── data.js     Bias Buster: biases and case files
+    │   └── game.js     Bias Buster: game flow and scoring
+    └── odds/
+        ├── engine.js   Odds Lab: puzzle generators (frequency trees, risk, expected value, two tests)
+        └── game.js     Odds Lab: guided steps, frequency tree, scoring
 ```
 Scripts are loaded in this order (see the bottom of `index.html`).
 
@@ -50,6 +58,8 @@ Scripts are loaded in this order (see the bottom of `index.html`).
 - Pattern types and levels for Pattern Puzzle: `js/pattern/engine.js` (`LEVELS`)
 - Puzzle types and levels for Shape Shifter: `js/shapeshift/engine.js` (`LEVELS`)
 - Topics and problem types for Mix Master: `js/mix/engine.js` (`L1`, `L2`, `L3`)
+- New biases or cases for Bias Buster: `js/bias/data.js`
+- Puzzle types and numbers for Odds Lab: `js/odds/engine.js` (`LEVELS`)
 - Colors: the `:root` variables at the top of `css/style.css` (light theme) and the dark-mode block right below it. The site follows the visitor's device setting.
 
 ## Free hosting
