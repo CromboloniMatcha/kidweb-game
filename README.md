@@ -43,9 +43,16 @@ sapio-lab/
     ├── bias/
     │   ├── data.js     Bias Buster: biases and case files
     │   └── game.js     Bias Buster: game flow and scoring
-    └── odds/
-        ├── engine.js   Odds Lab: puzzle generators (frequency trees, risk, expected value, two tests)
-        └── game.js     Odds Lab: guided steps, frequency tree, scoring
+    ├── odds/
+    │   ├── engine.js   Odds Lab: puzzle generators (frequency trees, risk, expected value, two tests)
+    │   └── game.js     Odds Lab: guided steps, frequency tree, scoring
+    └── i18n/
+        ├── i18n.js          Language switch (translator, page translation, overlays)
+        ├── id.ui.js         Indonesian: interface, level texts, kids games, feedback lines
+        ├── id.engines.js    Indonesian: Mix Master and Odds Lab problem templates
+        ├── id.detective.js  Indonesian: Argument Detective case files
+        ├── id.bias.js       Indonesian: Bias Buster case files
+        └── boot.js          Starts the language switch (load last)
 ```
 Scripts are loaded in this order (see the bottom of `index.html`).
 
@@ -61,6 +68,22 @@ Scripts are loaded in this order (see the bottom of `index.html`).
 - New biases or cases for Bias Buster: `js/bias/data.js`
 - Puzzle types and numbers for Odds Lab: `js/odds/engine.js` (`LEVELS`)
 - Colors: the `:root` variables at the top of `css/style.css` (light theme) and the dark-mode block right below it. The site follows the visitor's device setting.
+
+## Languages
+The site has an English / Bahasa Indonesia switch (button at the top right). It starts in the visitor's
+browser language and remembers the choice.
+- **How it works:** `js/i18n/i18n.js` translates the page in place. Dictionaries map the English text to the
+  translation, for example `"Play again": "Main lagi"`. In a key, `{name}` matches any text and `{#n}` matches
+  digits, so `"Puzzle {#n} of {#m}": "Teka-teki {n} dari {m}"` also works for numbers. Games need no changes.
+- **Edit or add a translation:** change the right side in `id.ui.js` (screens and messages) or `id.engines.js`
+  (Mix Master and Odds Lab problems). The case files of Argument Detective and Bias Buster are in `id.detective.js`
+  and `id.bias.js`, in the same order as `js/detective/data.js` and `js/bias/data.js`.
+- **New text in a game:** if you add English text, add its Indonesian version to a dictionary. Untranslated
+  text simply stays in English.
+- **Silly Sentence Lab** teaches English, so its sentences and words stay in English. The instructions and the
+  explanations of word types are in Indonesian.
+- **Another language:** copy the `id.*` files, translate the right sides, register them with another language
+  code, and add the language to the switch in `i18n.js`.
 
 ## Free hosting
 Upload the folder to GitHub Pages, Netlify, or Cloudflare Pages.
