@@ -13,6 +13,7 @@
  *  - Mark an element translate="no" to keep it untouched.
  * Games need no changes, except where a string contains HTML (see I18N.s).
  */
+ 
 const I18N = (() => {
   const dict = {};                    // dict[lang][english] = translation
   const compiled = {};                // placeholder keys turned into regular expressions

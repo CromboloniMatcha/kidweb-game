@@ -4,6 +4,7 @@
  * Left side = the English text exactly as it appears on screen; right side = the Indonesian.
  * {name} matches any text and {#n} matches digits (see i18n.js). Keep placeholders in the translation.
  */
+
 I18N.register("id", {
   /* ----- landing page and game picker ----- */
   "Fun brain games for kids, teens and students. Pick a game, choose your level and collect stars!": "Game asah otak yang seru untuk anak, remaja, dan pelajar. Pilih game, pilih level, lalu kumpulkan bintang!",

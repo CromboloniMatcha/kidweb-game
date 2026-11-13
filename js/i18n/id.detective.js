@@ -2,6 +2,7 @@
  * i18n/id.detective.js
  * Indonesian version of the Argument Detective case files (same order and shape as js/detective/data.js).
  */
+
 I18N.overlay(DETECTIVE, { id: {
   FALLACIES: {
     adhom: { name: "Ad hominem", def: "Menyerang orangnya, bukan menjawab argumennya." },

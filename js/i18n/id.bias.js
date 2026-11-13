@@ -2,6 +2,7 @@
  * i18n/id.bias.js
  * Indonesian version of the Bias Buster biases and case files (same order and shape as js/bias/data.js).
  */
+
 I18N.overlay(BIAS, { id: {
   BIASES: {
     confirmation: { name: "Bias konfirmasi", def: "Mencari dan menyukai informasi yang mendukung apa yang sudah kamu yakini." },

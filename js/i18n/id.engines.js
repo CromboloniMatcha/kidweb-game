@@ -4,6 +4,7 @@
  * Same rules as id.ui.js: left = the English template, right = the Indonesian one.
  * {x} matches any text, {#n} matches digits; captured text is translated too.
  */
+
 I18N.register("id", {
   /* ===== Mix Master: questions ===== */
   "Solve for x: {eq}": "Selesaikan x: {eq}",
